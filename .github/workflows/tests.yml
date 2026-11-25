@@ -1,0 +1,23 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: starter/requirements*.txt
+      - name: Install
+        run: pip install -r starter/requirements-dev.txt
+      - name: Generate a project and run its tests
+        run: python -m pytest tests/ -q --durations=5

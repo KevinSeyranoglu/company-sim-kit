@@ -1,0 +1,1 @@
+# the simulation itself needs only the standard library; add pygame-ce here if you build an animated view
